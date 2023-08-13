@@ -26,7 +26,7 @@ variable "REGISTRY_PREFIX" {
 }
 
 variable "IMAGE_NAME" {
-	default = "astradb-backup-local"
+	default = "astra-backup-local"
 }
 
 variable "BUILD_REVISION" {
