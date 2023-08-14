@@ -23,6 +23,24 @@ Docker:
 docker run -e ASTRA_DB_ID=id -e ASTRA_DB_REGION=eu-central-1 -e ASTRA_DB_SECURE_BUNDLE_FILE=scb_path -e ASTRA_DB_KEYSPACE=keyspace -e ASTRA_DB_PASSWORD=password  jgrehl/astra-backup-local
 ```
 
+example:
+```sh
+#!/bin/sh
+
+ASTRA_DB_ID=xxxxxxxxxxxxxxx
+ASTRA_DB_REGION=eu-central-1
+ASTRA_DB_PASSWORD=AstraCS:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ASTRA_DB_SECURE_BUNDLE_FILE=/root/.astra/scb_xxxxxxxxxxx_eu-central-1.zip
+ASTRA_DB_KEYSPACE=xxx
+SETTINGS=$HOME/.astra
+DATA=$HOME/var/astra
+
+docker run --name=astra-backup-xxx-xxx -d -e ASTRA_DB_ID=$ASTRA_DB_ID -e ASTRA_DB_REGION=$ASTRA_DB_REGION \
+        -e ASTRA_DB_SECURE_BUNDLE_FILE=$ASTRA_DB_SECURE_BUNDLE_FILE \
+        -e ASTRA_DB_PASSWORD=$ASTRA_DB_PASSWORD -e ASTRA_DB_KEYSPACE=$ASTRA_DB_KEYSPACE \
+        -v $SETTINGS:/root/.astra -v $DATA:/backups --restart=always jgrehl/astra-backup-local
+```
+
 ### How the backups folder works?
 
 First a new backup is created in the `last` folder with the full time.
@@ -96,5 +114,5 @@ docker exec --tty --interactive $CONTAINER /bin/sh -c "zcat $BACKUPFILE | psql -
 Replace `$ASTRA_DB_BACKUP_FILE`, `$ASTRA_DB_ID`, `$ASTRA_DB_REGION`, `$ASTRA_DB_PASSWORD`, `$ASTRA_DB_KEYSPACE` and `$ASTRA_DB_SECURE_BUNDLE_FILE` from the following command:
 
 ```sh
-docker run --rm --tty --interactive -v $ASTRA_DB_BACKUP_FILE:/backup/backupfile.tgz -e ASTRA_DB_BACKUP_FILE=/backup/backupfile.tgz -e ASTRA_DB_ID=id -e ASTRA_DB_REGION=eu-central-1 -e ASTRA_DB_SECURE_BUNDLE_FILE=scb_path -e ASTRA_DB_KEYSPACE=keyspace -e ASTRA_DB_PASSWORD=password"
+docker run --rm --tty --interactive -v $ASTRA_DB_BACKUP_FILE:/backup/backupfile.tgz -e ASTRA_DB_BACKUP_FILE=/backup/backupfile.tgz -e ASTRA_DB_ID=id -e ASTRA_DB_REGION=eu-central-1 -e ASTRA_DB_SECURE_BUNDLE_FILE=scb_path -e ASTRA_DB_KEYSPACE=keyspace -e ASTRA_DB_PASSWORD=password $CONTAINER ./restore.sh"
 ```
