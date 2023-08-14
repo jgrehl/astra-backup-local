@@ -93,8 +93,8 @@ docker exec --tty --interactive $CONTAINER /bin/sh -c "zcat $BACKUPFILE | psql -
 
 ### Restore using a new container
 
-Replace `$BACKUPFILE`, `$VERSION`, `$HOSTNAME`, `$PORT`, `$USERNAME` and `$DBNAME` from the following command:
+Replace `$ASTRA_DB_BACKUP_FILE`, `$ASTRA_DB_ID`, `$ASTRA_DB_REGION`, `$ASTRA_DB_PASSWORD`, `$ASTRA_DB_KEYSPACE` and `$ASTRA_DB_SECURE_BUNDLE_FILE` from the following command:
 
 ```sh
-docker run --rm --tty --interactive -v $BACKUPFILE:/tmp/backupfile.sql.gz postgres:$VERSION /bin/sh -c "zcat /tmp/backupfile.sql.gz | psql --host=$HOSTNAME --port=$PORT --username=$USERNAME --dbname=$DBNAME -W"
+docker run --rm --tty --interactive -v $ASTRA_DB_BACKUP_FILE:/backup/backupfile.tgz -e ASTRA_DB_BACKUP_FILE=/backup/backupfile.tgz -e ASTRA_DB_ID=id -e ASTRA_DB_REGION=eu-central-1 -e ASTRA_DB_SECURE_BUNDLE_FILE=scb_path -e ASTRA_DB_KEYSPACE=keyspace -e ASTRA_DB_PASSWORD=password"
 ```

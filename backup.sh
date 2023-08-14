@@ -95,23 +95,6 @@ for TABLE in ${ASTRA_DB_TABLES}; do
     dsbulk unload $DSBULK_OPTS -h ${ASTRA_DB_HOST} -u ${ASTRA_DB_USER} -p ${ASTRA_DB_PASSWORD} -b ${ASTRA_DB_SECURE_BUNDLE_FILE} \
       -k ${ASTRA_DB_KEYSPACE} -t ${TABLE} \
       | gzip > ${BACKUP_DIR}/temp/${TABLE}.csv.gz
-    
-    
-    #echo "*******************************************************"
-    #echo "* Start load: ${TABLE}                              *"
-    #echo "*******************************************************"
-    # Get the size of the gz file
-    #FILE_SIZE=$(stat -c %s "${BACKUP_DIR}/${TABLE}.csv.gz")
-
-    # Check if the file size is greater than 20 bytes
-    #if [ "$FILE_SIZE" -gt 20 ]; then
-      # Load data from the gz file
-      #zcat "${BACKUP_DIR}/${TABLE}.csv.gz" | \
-      #dsbulk load -h "${ASTRA_DB_HOST}" -u "${ASTRA_DB_USER}" -p "${ASTRA_DB_PASSWORD}" -b "${ASTRA_DB_SECURE_BUNDLE_FILE}" \
-      #  --dsbulk.connector.csv.maxCharsPerColumn -1 -k "${ASTRA_DB_KEYSPACE}" -t "${TABLE}"
-    #else
-      #echo "File size is not greater than 20 bytes. Skipping data loading."
-    #fi
   fi
 done
 
