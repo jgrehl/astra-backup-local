@@ -1,5 +1,11 @@
-![Docker pulls](https://img.shields.io/docker/pulls/jgrehl/astra-backup-local)
-![GitHub actions](https://github.com/jgrehl/docker-astra-backup-local/actions/workflows/ci.yml/badge.svg?branch=main)
+[![Docker Pulls](https://badgen.net/docker/pulls/jgrehl/astra-backup-local?icon=docker&label=pulls)](https://hub.docker.com/r/jgrehl/astra-backup-local/)
+[![Docker Stars](https://badgen.net/docker/stars/jgrehl/astra-backup-local?icon=docker&label=stars)](https://hub.docker.com/r/jgrehl/astra-backup-local/)
+[![Docker Image Size](https://badgen.net/docker/size/jgrehl/astra-backup-local?icon=docker&label=image%20size)](https://hub.docker.com/r/jgrehl/astra-backup-local/)
+![Github stars](https://badgen.net/github/stars/jgrehl/astra-backup-local?icon=github&label=stars)
+![Github forks](https://badgen.net/github/forks/jgrehl/astra-backup-local?icon=github&label=forks)
+![Github issues](https://img.shields.io/github/issues/jgrehl/astra-backup-local)
+![Github last-commit](https://img.shields.io/github/last-commit/jgrehl/astra-backup-local)
+
 
 # docker-astra-backup-local
 

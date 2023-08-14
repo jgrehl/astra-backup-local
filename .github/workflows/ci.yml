@@ -39,13 +39,15 @@ jobs:
           REGISTRY_PREFIX: ${{ secrets.DOCKERHUB_USERNAME }}/
           BUILD_REVISION: ${{ steps.vars.outputs.sha_short }}
         run: docker buildx bake --pull
-
+      
+      # Publish to Docker Hub
       - name: Push images
         env:
           REGISTRY_PREFIX: ${{ secrets.DOCKERHUB_USERNAME }}/
           BUILD_REVISION: ${{ steps.vars.outputs.sha_short }}
         run: docker buildx bake --push
       
+      # Update Docker Hub description
       - name: Docker Hub Description
         uses: peter-evans/dockerhub-description@v3
         with:
