@@ -7,7 +7,7 @@ ARG TARGETOS
 ARG TARGETARCH
 
 RUN set -x \
-	&& apk update && apk add ca-certificates curl \
+	&& apk update && apk add ca-certificates curl jq \
 	&& curl --fail --retry 4 --retry-all-errors -L https://github.com/prodrigestivill/go-cron/releases/download/$GOCRONVER/go-cron-$TARGETOS-$TARGETARCH-static.gz | zcat > /usr/local/bin/go-cron \
 	&& chmod a+x /usr/local/bin/go-cron \
   && curl --fail --retry 4 --retry-all-errors -o /usr/local/bin/dsbulk.jar -L https://repo.maven.apache.org/maven2/com/datastax/oss/dsbulk-distribution/${DSBULKVER}/dsbulk-distribution-${DSBULKVER}.jar \
