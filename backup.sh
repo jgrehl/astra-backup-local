@@ -1,22 +1,3 @@
-SCHEDULE="@daily"
-BACKUP_DIR="backup"
-BACKUP_SUFFIX=".tgz"
-BACKUP_KEEP_DAYS=7
-BACKUP_KEEP_WEEKS=4
-BACKUP_KEEP_MONTHS=6
-BACKUP_KEEP_MINS=1440
-HEALTHCHECK_PORT=8080
-WEBHOOK_URL="**None**"
-WEBHOOK_EXTRA_ARGS=""
-
-ASTRA_DB_ID="**None**"
-ASTRA_DB_REGION="**None**"
-ASTRA_DB_HOST="**None**"
-ASTRA_DB_SECURE_BUNDLE_FILE="**None**"
-ASTRA_DB_KEYSPACE="**None**"
-ASTRA_DB_USER=token
-ASTRA_DB_PASSWORD="**None**"
-
 #!/usr/bin/env bash
 set -Eeo pipefail
 
@@ -30,7 +11,7 @@ fi
 
 if [ "${ASTRA_DB_HOST}" = "**None**" ]; then
   if [ "${ASTRA_DB_ID}" = "**None**" -a "${ASTRA_DB_REGION}" = "**None**" ]; then
-    echo "You need to set the ASTRA_DB_ID, ASTRA_DB_REGION or ASTRA_DB_HOST environment variable.."
+    echo "You need to set the $ASTRA_DB_ID, $ASTRA_DB_REGION or ASTRA_DB_HOST environment variable.."
     exit 1
   else
     ASTRA_DB_HOST = $ASTRA_DB_ID-$ASTRA_DB_REGION.apps.astra.datastax.com
