@@ -1,4 +1,4 @@
-![Docker pulls](https://img.shields.io/docker/pulls/likeluckyjoe/astra-backup-local)
+![Docker pulls](https://img.shields.io/docker/pulls/jgrehl/astra-backup-local)
 ![GitHub actions](https://github.com/jgrehl/docker-astra-backup-local/actions/workflows/ci.yml/badge.svg?branch=main)
 
 # docker-astra-backup-local
@@ -14,7 +14,7 @@ Please consider reading detailed the [How the backups folder works?](#how-the-ba
 Docker:
 
 ```sh
-docker run -e ASTRA_DB_ID=id -e ASTRA_DB_REGION=eu-central-1 -e ASTRA_DB_SECURE_BUNDLE_FILE=scb_path -e ASTRA_DB_KEYSPACE=keyspace -e ASTRA_DB_PASSWORD=password  likeluckyjoe/postgres-backup-local
+docker run -e ASTRA_DB_ID=id -e ASTRA_DB_REGION=eu-central-1 -e ASTRA_DB_SECURE_BUNDLE_FILE=scb_path -e ASTRA_DB_KEYSPACE=keyspace -e ASTRA_DB_PASSWORD=password  jgrehl/astra-backup-local
 ```
 
 ### How the backups folder works?
@@ -62,7 +62,7 @@ By default this container makes daily backups, but you can start a manual backup
 This script as example creates one backup as the running user and saves it the working folder.
 
 ```sh
-docker run --rm -v "$PWD:/backups" -u "$(id -u):$(id -g)" -e ASTRA_DB_ID=id -e ASTRA_DB_REGION=eu-central-1 -e ASTRA_DB_SECURE_BUNDLE_FILE=scb_path -e ASTRA_DB_KEYSPACE=keyspace -e ASTRA_DB_PASSWORD=password  likeluckyjoe/postgres-backup-local /backup.sh
+docker run --rm -v "$PWD:/backups" -u "$(id -u):$(id -g)" -e ASTRA_DB_ID=id -e ASTRA_DB_REGION=eu-central-1 -e ASTRA_DB_SECURE_BUNDLE_FILE=scb_path -e ASTRA_DB_KEYSPACE=keyspace -e ASTRA_DB_PASSWORD=password  jgrehl/astra-backup-local /backup.sh
 ```
 
 ### Automatic Periodic Backups
