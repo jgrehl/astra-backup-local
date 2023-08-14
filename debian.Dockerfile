@@ -23,7 +23,8 @@ RUN set -x \
 	&& curl --fail --retry 4 --retry-all-errors -o /usr/local/bin/go-cron.gz -L https://github.com/prodrigestivill/go-cron/releases/download/$GOCRONVER/go-cron-$TARGETOS-$TARGETARCH.gz \
 	&& gzip -vnd /usr/local/bin/go-cron.gz && chmod a+x /usr/local/bin/go-cron \
   && curl --fail --retry 4 --retry-all-errors -o /usr/local/bin/dsbulk.jar -L https://repo.maven.apache.org/maven2/com/datastax/oss/dsbulk-distribution/$DSBULKVER/dsbulk-distribution-$DSBULKVER.jar \
-  && chmod a+x /usr/local/bin/dsbulk.jar
+  && chmod a+x /usr/local/bin/dsbulk.jar \
+  && echo 'alias dsbulk="java -jar /usr/local/bin/dsbulk.jar"' >> ~/.bashrc
 
 ENV ASTRA_DB_ID="**None**" \
     ASTRA_DB_REGION="**None**" \
