@@ -14,7 +14,7 @@ if [ "${ASTRA_DB_HOST}" = "**None**" ]; then
     echo "You need to set the $ASTRA_DB_ID, $ASTRA_DB_REGION or ASTRA_DB_HOST environment variable.."
     exit 1
   else
-    ASTRA_DB_HOST = $ASTRA_DB_ID-$ASTRA_DB_REGION.apps.astra.datastax.com
+    ASTRA_DB_HOST=$ASTRA_DB_ID-$ASTRA_DB_REGION.apps.astra.datastax.com
   fi
 fi
 
