@@ -84,7 +84,7 @@ echo "Found ${ASTRA_DB_TABLES_COUNT} tables in keyspace ${ASTRA_DB_KEYSPACE}"
 for TABLE in ${ASTRA_DB_TABLES}; do
 
   echo "Checking row count for table ${TABLE}"
-  count=$(dsbulk count -k ${ASTRA_DB_KEYSPACE} -h ${ASTRA_DB_HOST} -u ${ASTRA_DB_USER} -p ${ASTRA_DB_PASSWORD} -b ${ASTRA_DB_SECURE_BUNDLE_FILE} -t ${TABLE});
+  count=$(dsbulk count $DSBULK_OPTS -k ${ASTRA_DB_KEYSPACE} -h ${ASTRA_DB_HOST} -u ${ASTRA_DB_USER} -p ${ASTRA_DB_PASSWORD} -b ${ASTRA_DB_SECURE_BUNDLE_FILE} -t ${TABLE});
 
   if [ "$count" -eq 0 ]; then
     echo "No rows in ${TABLE}"
@@ -92,7 +92,7 @@ for TABLE in ${ASTRA_DB_TABLES}; do
     echo "*******************************************************"
     echo "* Start unload: ${TABLE}                              *"
     echo "*******************************************************"
-    dsbulk unload -h ${ASTRA_DB_HOST} -u ${ASTRA_DB_USER} -p ${ASTRA_DB_PASSWORD} -b ${ASTRA_DB_SECURE_BUNDLE_FILE} \
+    dsbulk unload $DSBULK_OPTS -h ${ASTRA_DB_HOST} -u ${ASTRA_DB_USER} -p ${ASTRA_DB_PASSWORD} -b ${ASTRA_DB_SECURE_BUNDLE_FILE} \
       -k ${ASTRA_DB_KEYSPACE} -t ${TABLE} \
       | gzip > ${BACKUP_DIR}/temp/${TABLE}.csv.gz
     

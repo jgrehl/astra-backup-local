@@ -21,6 +21,7 @@ ENV ASTRA_DB_ID="**None**" \
     ASTRA_DB_KEYSPACE="**None**" \
     ASTRA_DB_USER="token" \
     ASTRA_DB_PASSWORD="**None**" \
+    DSBULK_OPTS="-log.checkpoint.file false" \
     SCHEDULE="@daily" \
     BACKUP_DIR="/backups" \
     BACKUP_SUFFIX=".tgz" \
