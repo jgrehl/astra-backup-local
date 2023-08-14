@@ -46,13 +46,12 @@ jobs:
           BUILD_REVISION: ${{ steps.vars.outputs.sha_short }}
         run: docker buildx bake --push
       
-      - name: Push redame
-        env:
-          REGISTRY_PREFIX: ${{ secrets.DOCKERHUB_USERNAME }}/
-          BUILD_REVISION: ${{ steps.vars.outputs.sha_short }}
-        run: docker run --rm -t -v $(pwd):/vol \
-          -e DOCKER_USER='${{ secrets.DOCKERHUB_USERNAME }}' -e DOCKER_PASS='${{ secrets.DOCKERHUB_TOKEN }}' \
-          chko/docker-pushrm:1 --file /vol/BUILD.md $GITHUB_REPOSITORY
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: peterevans/dockerhub-description
 
   ## Example of publish using GitHub Container Registry instead
   # publish:
