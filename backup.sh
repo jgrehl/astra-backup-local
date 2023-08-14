@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -Eeo pipefail
 
+shopt -s expand_aliases
+alias dsbulk='java -jar /usr/local/bin/dsbulk.jar'
+
 HOOKS_DIR="/hooks"
 if [ -d "${HOOKS_DIR}" ]; then
   on_error(){
