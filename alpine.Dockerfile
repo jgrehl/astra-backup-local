@@ -34,7 +34,7 @@ ENV ASTRA_DB_ID="**None**" \
     WEBHOOK_EXTRA_ARGS=""
 
 COPY hooks /hooks
-COPY *.sh /*.sh
+COPY *.sh /
 
 VOLUME /backups
 
