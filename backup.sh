@@ -51,7 +51,7 @@ BACKUP_TMP_DIR="${BACKUP_DIR}/temp/"
 
 # Remove old temp. backups
 rm -rf "${BACKUP_TMP_DIR}"
-rm -rf "logs/*"
+find /log -type d -mtime +7 -exec rm -rf {} +
 
 #Initialize dirs
 mkdir -p "${BACKUP_TMP_DIR}" "${BACKUP_DIR}/last/" "${BACKUP_DIR}/daily/" "${BACKUP_DIR}/weekly/" "${BACKUP_DIR}/monthly/"
